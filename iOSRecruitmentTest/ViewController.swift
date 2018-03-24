@@ -51,6 +51,9 @@ class ViewController: UIViewController, ShowsAlert {
                 }
             })
         }){
+            DispatchQueue.main.async(execute: { [weak self] () -> Void in
+                self?.refreshControl.endRefreshing()
+                })
             self.showAlert(message: "Couldn't fetch data from the server")
         }
     }
