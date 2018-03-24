@@ -10,30 +10,25 @@ import UIKit
 
 class TableViewCell: UITableViewCell {
 
-    var item: AnyObject? {
-        didSet {
-            if item == nil {
-                iconView.image = nil
-                itemTitleLabel.text = "Test"
-                itemDescLabel.text = "Some description"
-            } else {
-                // TODO: Implement item sets
-            }
-        }
-    }
-    
     @IBOutlet weak var iconView: UIImageView!
     @IBOutlet weak var itemTitleLabel: UILabel!
     @IBOutlet weak var itemDescLabel: UILabel!
     
+    var item: RecruitmentItemEntity? {
+        didSet {
+            self.itemTitleLabel.text = self.item?.name ?? ""
+            self.itemDescLabel.text = self.item?.descriptionText ?? ""
+        }
+    }
+
     override func awakeFromNib() {
         super.awakeFromNib()
-        iconView.layer.cornerRadius = 4
+        self.iconView.layer.cornerRadius = 4
     }
     
     override func prepareForReuse() {
         super.prepareForReuse()
         self.item = nil
+        iconView.image = nil
     }
-    
 }

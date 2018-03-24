@@ -16,17 +16,24 @@ class ViewController: UIViewController {
     let service = RecruitmentItemService()
     private let itemMapper = RecruitmentItemMapper()
     private var recruitmentItemsEntityData: [RecruitmentItemEntity] = []
+    private let recruitmentItemsFetcher = RecruitmentItemsFetcher()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tableViewConfiguration()
-        self.fetchData()
+        self.recruitmentItemsEntityData = self.recruitmentItemsFetcher.fetchRecruitmentItemsFromCore()
+        if recruitmentItemsEntityData.count == 0 {
+            self.fetchData()
+        }
     }
     
     fileprivate func fetchData() {
         PersistenceService.deleteAll()
         self.service.fetchData(successHandler: { response in
             self.recruitmentItemsEntityData = self.itemMapper.mapToEntity(with: response)
+            DispatchQueue.main.async(execute: { () -> Void in
+                self.tableView.reloadData()
+            })
         }){
             print("Error in VC with fetching data")
         }
@@ -43,14 +50,13 @@ extension ViewController: UITableViewDataSource {
     
     // MARK: - UITableView data source
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 20
+        return recruitmentItemsEntityData.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell =  tableView.dequeueReusableCell(withIdentifier: "TableViewCell") as! TableViewCell
-        
-        cell.item = nil
-        
+        let model = self.recruitmentItemsEntityData[indexPath.row]
+        cell.item = model
         return cell
     }
 }
