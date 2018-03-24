@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9ADBDF6320667BDD007F4230 /* PersistenceService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ADBDF6220667BDD007F4230 /* PersistenceService.swift */; };
+		9ADBDF6520667C71007F4230 /* RecruitmentItemModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ADBDF6420667C71007F4230 /* RecruitmentItemModel.swift */; };
+		9ADBDF6720667C93007F4230 /* NetworkClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ADBDF6620667C93007F4230 /* NetworkClient.swift */; };
+		9ADBDF6920667CC5007F4230 /* RecruitmentItemRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ADBDF6820667CC5007F4230 /* RecruitmentItemRequest.swift */; };
+		9ADBDF6B20667CDC007F4230 /* RecruitmentItemService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ADBDF6A20667CDC007F4230 /* RecruitmentItemService.swift */; };
+		9ADBDF6D20667CF5007F4230 /* RecruitmentItemMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ADBDF6C20667CF5007F4230 /* RecruitmentItemMapper.swift */; };
 		D93FDE421D114DEA00AB8D9B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D93FDE411D114DEA00AB8D9B /* AppDelegate.swift */; };
 		D93FDE4A1D114DEA00AB8D9B /* iOSRecruitmentTest.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D93FDE481D114DEA00AB8D9B /* iOSRecruitmentTest.xcdatamodeld */; };
 		D93FDE4C1D114DEA00AB8D9B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D93FDE4B1D114DEA00AB8D9B /* Assets.xcassets */; };
@@ -18,6 +24,12 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		9ADBDF6220667BDD007F4230 /* PersistenceService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceService.swift; sourceTree = "<group>"; };
+		9ADBDF6420667C71007F4230 /* RecruitmentItemModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecruitmentItemModel.swift; sourceTree = "<group>"; };
+		9ADBDF6620667C93007F4230 /* NetworkClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkClient.swift; sourceTree = "<group>"; };
+		9ADBDF6820667CC5007F4230 /* RecruitmentItemRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecruitmentItemRequest.swift; sourceTree = "<group>"; };
+		9ADBDF6A20667CDC007F4230 /* RecruitmentItemService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecruitmentItemService.swift; sourceTree = "<group>"; };
+		9ADBDF6C20667CF5007F4230 /* RecruitmentItemMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecruitmentItemMapper.swift; sourceTree = "<group>"; };
 		D93FDE3E1D114DEA00AB8D9B /* iOSRecruitmentTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iOSRecruitmentTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D93FDE411D114DEA00AB8D9B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D93FDE491D114DEA00AB8D9B /* iOSRecruitmentTest.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = iOSRecruitmentTest.xcdatamodel; sourceTree = "<group>"; };
@@ -41,6 +53,37 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		9ADBDF5B20667AA8007F4230 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				9ADBDF6420667C71007F4230 /* RecruitmentItemModel.swift */,
+				9ADBDF6620667C93007F4230 /* NetworkClient.swift */,
+				9ADBDF6820667CC5007F4230 /* RecruitmentItemRequest.swift */,
+				9ADBDF6A20667CDC007F4230 /* RecruitmentItemService.swift */,
+				9ADBDF6C20667CF5007F4230 /* RecruitmentItemMapper.swift */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		9ADBDF5C20667AAE007F4230 /* Core Data */ = {
+			isa = PBXGroup;
+			children = (
+				D93FDE481D114DEA00AB8D9B /* iOSRecruitmentTest.xcdatamodeld */,
+				9ADBDF6220667BDD007F4230 /* PersistenceService.swift */,
+			);
+			path = "Core Data";
+			sourceTree = "<group>";
+		};
+		9ADBDF5D20667AC2007F4230 /* Layout */ = {
+			isa = PBXGroup;
+			children = (
+				D93FDE5B1D114F9300AB8D9B /* TableViewCell.xib */,
+				D93FDE571D114E7A00AB8D9B /* ViewController.xib */,
+				D93FDE5E1D11517400AB8D9B /* Launch Screen.storyboard */,
+			);
+			path = Layout;
+			sourceTree = "<group>";
+		};
 		D93FDE351D114DEA00AB8D9B = {
 			isa = PBXGroup;
 			children = (
@@ -60,15 +103,14 @@
 		D93FDE401D114DEA00AB8D9B /* iOSRecruitmentTest */ = {
 			isa = PBXGroup;
 			children = (
+				9ADBDF5D20667AC2007F4230 /* Layout */,
+				9ADBDF5C20667AAE007F4230 /* Core Data */,
+				9ADBDF5B20667AA8007F4230 /* Network */,
 				D93FDE5A1D114F9300AB8D9B /* TableViewCell.swift */,
-				D93FDE5B1D114F9300AB8D9B /* TableViewCell.xib */,
 				D93FDE561D114E7A00AB8D9B /* ViewController.swift */,
-				D93FDE571D114E7A00AB8D9B /* ViewController.xib */,
 				D93FDE411D114DEA00AB8D9B /* AppDelegate.swift */,
 				D93FDE4B1D114DEA00AB8D9B /* Assets.xcassets */,
 				D93FDE501D114DEA00AB8D9B /* Info.plist */,
-				D93FDE481D114DEA00AB8D9B /* iOSRecruitmentTest.xcdatamodeld */,
-				D93FDE5E1D11517400AB8D9B /* Launch Screen.storyboard */,
 			);
 			path = iOSRecruitmentTest;
 			sourceTree = "<group>";
@@ -145,9 +187,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9ADBDF6320667BDD007F4230 /* PersistenceService.swift in Sources */,
+				9ADBDF6920667CC5007F4230 /* RecruitmentItemRequest.swift in Sources */,
+				9ADBDF6D20667CF5007F4230 /* RecruitmentItemMapper.swift in Sources */,
+				9ADBDF6520667C71007F4230 /* RecruitmentItemModel.swift in Sources */,
 				D93FDE581D114E7A00AB8D9B /* ViewController.swift in Sources */,
 				D93FDE5C1D114F9300AB8D9B /* TableViewCell.swift in Sources */,
+				9ADBDF6720667C93007F4230 /* NetworkClient.swift in Sources */,
 				D93FDE4A1D114DEA00AB8D9B /* iOSRecruitmentTest.xcdatamodeld in Sources */,
+				9ADBDF6B20667CDC007F4230 /* RecruitmentItemService.swift in Sources */,
 				D93FDE421D114DEA00AB8D9B /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
