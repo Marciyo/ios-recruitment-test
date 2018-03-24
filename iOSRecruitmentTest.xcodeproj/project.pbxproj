@@ -14,6 +14,8 @@
 		9ADBDF6B20667CDC007F4230 /* RecruitmentItemService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ADBDF6A20667CDC007F4230 /* RecruitmentItemService.swift */; };
 		9ADBDF6D20667CF5007F4230 /* RecruitmentItemMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ADBDF6C20667CF5007F4230 /* RecruitmentItemMapper.swift */; };
 		9ADBDF6F20668194007F4230 /* RecruitmentItemsFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ADBDF6E20668194007F4230 /* RecruitmentItemsFetcher.swift */; };
+		9ADBDF7120668852007F4230 /* ImageCacheAssistant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ADBDF7020668852007F4230 /* ImageCacheAssistant.swift */; };
+		9ADBDF7320668872007F4230 /* ImageDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ADBDF7220668872007F4230 /* ImageDownloader.swift */; };
 		D93FDE421D114DEA00AB8D9B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D93FDE411D114DEA00AB8D9B /* AppDelegate.swift */; };
 		D93FDE4A1D114DEA00AB8D9B /* iOSRecruitmentTest.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D93FDE481D114DEA00AB8D9B /* iOSRecruitmentTest.xcdatamodeld */; };
 		D93FDE4C1D114DEA00AB8D9B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D93FDE4B1D114DEA00AB8D9B /* Assets.xcassets */; };
@@ -32,6 +34,8 @@
 		9ADBDF6A20667CDC007F4230 /* RecruitmentItemService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecruitmentItemService.swift; sourceTree = "<group>"; };
 		9ADBDF6C20667CF5007F4230 /* RecruitmentItemMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecruitmentItemMapper.swift; sourceTree = "<group>"; };
 		9ADBDF6E20668194007F4230 /* RecruitmentItemsFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecruitmentItemsFetcher.swift; sourceTree = "<group>"; };
+		9ADBDF7020668852007F4230 /* ImageCacheAssistant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCacheAssistant.swift; sourceTree = "<group>"; };
+		9ADBDF7220668872007F4230 /* ImageDownloader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageDownloader.swift; sourceTree = "<group>"; };
 		D93FDE3E1D114DEA00AB8D9B /* iOSRecruitmentTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iOSRecruitmentTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D93FDE411D114DEA00AB8D9B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D93FDE491D114DEA00AB8D9B /* iOSRecruitmentTest.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = iOSRecruitmentTest.xcdatamodel; sourceTree = "<group>"; };
@@ -63,6 +67,8 @@
 				9ADBDF6820667CC5007F4230 /* RecruitmentItemRequest.swift */,
 				9ADBDF6A20667CDC007F4230 /* RecruitmentItemService.swift */,
 				9ADBDF6C20667CF5007F4230 /* RecruitmentItemMapper.swift */,
+				9ADBDF7020668852007F4230 /* ImageCacheAssistant.swift */,
+				9ADBDF7220668872007F4230 /* ImageDownloader.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -192,6 +198,7 @@
 			files = (
 				9ADBDF6F20668194007F4230 /* RecruitmentItemsFetcher.swift in Sources */,
 				9ADBDF6320667BDD007F4230 /* PersistenceService.swift in Sources */,
+				9ADBDF7320668872007F4230 /* ImageDownloader.swift in Sources */,
 				9ADBDF6920667CC5007F4230 /* RecruitmentItemRequest.swift in Sources */,
 				9ADBDF6D20667CF5007F4230 /* RecruitmentItemMapper.swift in Sources */,
 				9ADBDF6520667C71007F4230 /* RecruitmentItemModel.swift in Sources */,
@@ -199,6 +206,7 @@
 				D93FDE5C1D114F9300AB8D9B /* TableViewCell.swift in Sources */,
 				9ADBDF6720667C93007F4230 /* NetworkClient.swift in Sources */,
 				D93FDE4A1D114DEA00AB8D9B /* iOSRecruitmentTest.xcdatamodeld in Sources */,
+				9ADBDF7120668852007F4230 /* ImageCacheAssistant.swift in Sources */,
 				9ADBDF6B20667CDC007F4230 /* RecruitmentItemService.swift in Sources */,
 				D93FDE421D114DEA00AB8D9B /* AppDelegate.swift in Sources */,
 			);

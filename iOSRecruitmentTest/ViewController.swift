@@ -20,6 +20,8 @@ class ViewController: UIViewController {
     private var recruitmentItemsEntityData: [RecruitmentItemEntity] = []
     private let recruitmentItemsFetcher = RecruitmentItemsFetcher()
     
+    private let imageCacheAssistant = ImageCacheAssistant()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tableViewConfiguration()
@@ -29,11 +31,17 @@ class ViewController: UIViewController {
         }
     }
     
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        self.imageCacheAssistant.clearCache()
+    }
+    
     @objc fileprivate func fetchData() {
         PersistenceService.deleteAll()
         self.service.fetchData(successHandler: { response in
             self.recruitmentItemsEntityData = self.itemMapper.mapToEntity(with: response)
             DispatchQueue.main.async(execute: { () -> Void in
+                self.imageCacheAssistant.clearCache()
                 self.tableView.reloadData()
                 self.refreshControl.endRefreshing()
             })
@@ -62,6 +70,19 @@ extension ViewController: UITableViewDataSource {
         let cell =  tableView.dequeueReusableCell(withIdentifier: "TableViewCell") as! TableViewCell
         let model = self.recruitmentItemsEntityData[indexPath.row]
         cell.item = model
+        
+        if let image = self.imageCacheAssistant.getImage(for: model.iconUrl ?? "") {
+            cell.iconView.image = image
+        } else {
+            ImageDownloader.downloadedFrom(link: model.iconUrl ?? "", completion: { [weak self] image in
+                DispatchQueue.main.async(execute: { () -> Void in
+                    self?.imageCacheAssistant.setImage(image, for: model.iconUrl ?? "")
+                    if let cell = self?.tableView.cellForRow(at: indexPath) as? TableViewCell {
+                        cell.iconView.image = image
+                    }
+                })
+            })
+        }
         return cell
     }
 }
