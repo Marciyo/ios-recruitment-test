@@ -7,14 +7,13 @@
 //
 
 import UIKit
+import CRRefresh
 
 class ViewController: UIViewController, ShowsAlert {
 
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var tableView: UITableView!
     
-    fileprivate let refreshControl = UIRefreshControl()
-
     let service = RecruitmentItemService()
     private let itemMapper = RecruitmentItemMapper()
     private var recruitmentItemsEntityData: [RecruitmentItemEntity] = []
@@ -45,12 +44,15 @@ class ViewController: UIViewController, ShowsAlert {
             DispatchQueue.main.async(execute: { [weak self] () -> Void in
                 self?.imageCacheAssistant.clearCache()
                 self?.tableView.reloadData()
-                self?.refreshControl.endRefreshing()
+                self?.tableView.cr.endHeaderRefresh()
                 if let text = self?.searchBar.text {
                     self?.filterContentForSearchText(text)
                 }
             })
         }){
+            DispatchQueue.main.async(execute: { [weak self] () -> Void in
+                    self?.tableView.cr.endHeaderRefresh()
+                })
             self.showAlert(message: "Couldn't fetch data from the server")
         }
     }
@@ -61,8 +63,9 @@ extension ViewController: UITableViewDataSource {
     static let tableViewCellIdentifier = "TableViewCell"
 
     fileprivate func tableViewConfiguration() {
-        self.refreshControl.addTarget(self, action: #selector(self.fetchData), for: UIControlEvents.valueChanged)
-        self.tableView.refreshControl = refreshControl
+        self.tableView.cr.addHeadRefresh(animator: NormalHeaderAnimator()) { [weak self] in
+            self?.fetchData()
+        }
         self.tableView.register(UINib(nibName: "TableViewCell", bundle: nil), forCellReuseIdentifier: ViewController.tableViewCellIdentifier)
     }
     
@@ -84,8 +87,6 @@ extension ViewController: UITableViewDataSource {
         } else {
             model = self.filteredRecruitmentItemsEntityData[indexPath.row]
         }
-        
-        
         
         cell.item = model
         if let image = self.imageCacheAssistant.getImage(for: model.iconUrl ?? "") {
