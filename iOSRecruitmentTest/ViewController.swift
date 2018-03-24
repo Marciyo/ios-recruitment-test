@@ -18,6 +18,7 @@ class ViewController: UIViewController {
     let service = RecruitmentItemService()
     private let itemMapper = RecruitmentItemMapper()
     private var recruitmentItemsEntityData: [RecruitmentItemEntity] = []
+    private var filteredRecruitmentItemsEntityData: [RecruitmentItemEntity] = []
     private let recruitmentItemsFetcher = RecruitmentItemsFetcher()
     
     private let imageCacheAssistant = ImageCacheAssistant()
@@ -44,6 +45,9 @@ class ViewController: UIViewController {
                 self.imageCacheAssistant.clearCache()
                 self.tableView.reloadData()
                 self.refreshControl.endRefreshing()
+                if !self.searchBarIsEmpty() {
+                    self.filterContentForSearchText(self.searchBar.text!)
+                }
             })
         }){
             print("Error in VC with fetching data")
@@ -63,14 +67,24 @@ extension ViewController: UITableViewDataSource {
     
     // MARK: - UITableView data source
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return recruitmentItemsEntityData.count
+        if searchBarIsEmpty() {
+            return self.recruitmentItemsEntityData.count
+        }
+        return self.filteredRecruitmentItemsEntityData.count
+        
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell =  tableView.dequeueReusableCell(withIdentifier: "TableViewCell") as! TableViewCell
-        let model = self.recruitmentItemsEntityData[indexPath.row]
-        cell.item = model
         
+        let model: RecruitmentItemEntity
+        if self.searchBarIsEmpty() {
+            model = self.recruitmentItemsEntityData[indexPath.row]
+        } else {
+            model = self.filteredRecruitmentItemsEntityData[indexPath.row]
+        }
+        
+        cell.item = model
         if let image = self.imageCacheAssistant.getImage(for: model.iconUrl ?? "") {
             cell.iconView.image = image
         } else {
@@ -88,5 +102,21 @@ extension ViewController: UITableViewDataSource {
 }
 
 extension ViewController:  UISearchBarDelegate{
+    private func searchBarIsEmpty() -> Bool {
+        return self.searchBar.text?.isEmpty ?? true
+    }
     
+    private func filterContentForSearchText(_ searchText: String, scope: String = "All") {
+        self.filteredRecruitmentItemsEntityData = self.recruitmentItemsEntityData.filter({( item : RecruitmentItemEntity) -> Bool in
+            return item.name!.lowercased().contains(searchText.lowercased())
+        })
+        UIView.transition(with: self.tableView,
+                          duration: 0.35,
+                          options: .transitionCrossDissolve,
+                          animations: { self.tableView.reloadData() })
+    }
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        self.filterContentForSearchText(searchText)
+    }
 }
