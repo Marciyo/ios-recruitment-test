@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, ShowsAlert {
 
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var tableView: UITableView!
@@ -26,7 +26,8 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tableViewConfiguration()
-        self.recruitmentItemsEntityData = self.recruitmentItemsFetcher.fetchRecruitmentItemsFromCore()
+        self.recruitmentItemsEntityData = self.recruitmentItemsFetcher.fetchRecruitmentItemsFromCore().sorted(by: { $0.id < $1.id })
+
         if recruitmentItemsEntityData.count == 0 {
             self.fetchData()
         }
@@ -41,16 +42,16 @@ class ViewController: UIViewController {
         PersistenceService.deleteAll()
         self.service.fetchData(successHandler: { response in
             self.recruitmentItemsEntityData = self.itemMapper.mapToEntity(with: response)
-            DispatchQueue.main.async(execute: { () -> Void in
-                self.imageCacheAssistant.clearCache()
-                self.tableView.reloadData()
-                self.refreshControl.endRefreshing()
-                if !self.searchBarIsEmpty() {
-                    self.filterContentForSearchText(self.searchBar.text!)
+            DispatchQueue.main.async(execute: { [weak self] () -> Void in
+                self?.imageCacheAssistant.clearCache()
+                self?.tableView.reloadData()
+                self?.refreshControl.endRefreshing()
+                if let text = self?.searchBar.text {
+                    self?.filterContentForSearchText(text)
                 }
             })
         }){
-            print("Error in VC with fetching data")
+            self.showAlert(message: "Couldn't fetch data from the server")
         }
     }
 }
@@ -84,13 +85,15 @@ extension ViewController: UITableViewDataSource {
             model = self.filteredRecruitmentItemsEntityData[indexPath.row]
         }
         
+        
+        
         cell.item = model
         if let image = self.imageCacheAssistant.getImage(for: model.iconUrl ?? "") {
             cell.iconView.image = image
         } else {
             ImageDownloader.downloadedFrom(link: model.iconUrl ?? "", completion: { [weak self] image in
-                DispatchQueue.main.async(execute: { () -> Void in
-                    self?.imageCacheAssistant.setImage(image, for: model.iconUrl ?? "")
+                DispatchQueue.main.async(execute: { [weak self] () -> Void in
+                    self?.imageCacheAssistant.setImage(image: image, forKey: model.iconUrl ?? "")
                     if let cell = self?.tableView.cellForRow(at: indexPath) as? TableViewCell {
                         cell.iconView.image = image
                     }
@@ -101,14 +104,18 @@ extension ViewController: UITableViewDataSource {
     }
 }
 
-extension ViewController:  UISearchBarDelegate{
+extension ViewController:  UISearchBarDelegate {
     private func searchBarIsEmpty() -> Bool {
         return self.searchBar.text?.isEmpty ?? true
     }
     
     private func filterContentForSearchText(_ searchText: String, scope: String = "All") {
         self.filteredRecruitmentItemsEntityData = self.recruitmentItemsEntityData.filter({( item : RecruitmentItemEntity) -> Bool in
-            return item.name!.lowercased().contains(searchText.lowercased())
+            if let name = item.name{
+                return name.lowercased().contains(searchText.lowercased())
+            }else {
+                return false
+            }
         })
         UIView.transition(with: self.tableView,
                           duration: 0.35,

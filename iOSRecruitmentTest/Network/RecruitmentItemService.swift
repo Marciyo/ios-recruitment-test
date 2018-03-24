@@ -16,7 +16,7 @@ struct RecruitmentItemService {
     }
     
     func fetchData(successHandler: (([RecruitmentItemModel]) -> ())?, errorHandler: (() -> ())?) {
-        API.fetchData(request: self.request, success: { (model: [RecruitmentItemModel]) in
+        APIClient.fetchData(request: self.request, success: { (model: [RecruitmentItemModel]) in
             successHandler?(model)
         }) { _ in
             errorHandler?()

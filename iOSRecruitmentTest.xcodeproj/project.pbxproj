@@ -7,9 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9A7FFAC52066B07200EE063D /* ShowsAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A7FFAC42066B07200EE063D /* ShowsAlert.swift */; };
+		9A7FFAC92066B7F500EE063D /* HttpRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A7FFAC82066B7F500EE063D /* HttpRequest.swift */; };
 		9ADBDF6320667BDD007F4230 /* PersistenceService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ADBDF6220667BDD007F4230 /* PersistenceService.swift */; };
 		9ADBDF6520667C71007F4230 /* RecruitmentItemModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ADBDF6420667C71007F4230 /* RecruitmentItemModel.swift */; };
-		9ADBDF6720667C93007F4230 /* NetworkClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ADBDF6620667C93007F4230 /* NetworkClient.swift */; };
+		9ADBDF6720667C93007F4230 /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ADBDF6620667C93007F4230 /* APIClient.swift */; };
 		9ADBDF6920667CC5007F4230 /* RecruitmentItemRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ADBDF6820667CC5007F4230 /* RecruitmentItemRequest.swift */; };
 		9ADBDF6B20667CDC007F4230 /* RecruitmentItemService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ADBDF6A20667CDC007F4230 /* RecruitmentItemService.swift */; };
 		9ADBDF6D20667CF5007F4230 /* RecruitmentItemMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ADBDF6C20667CF5007F4230 /* RecruitmentItemMapper.swift */; };
@@ -27,9 +29,11 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		9A7FFAC42066B07200EE063D /* ShowsAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowsAlert.swift; sourceTree = "<group>"; };
+		9A7FFAC82066B7F500EE063D /* HttpRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HttpRequest.swift; sourceTree = "<group>"; };
 		9ADBDF6220667BDD007F4230 /* PersistenceService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceService.swift; sourceTree = "<group>"; };
 		9ADBDF6420667C71007F4230 /* RecruitmentItemModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecruitmentItemModel.swift; sourceTree = "<group>"; };
-		9ADBDF6620667C93007F4230 /* NetworkClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkClient.swift; sourceTree = "<group>"; };
+		9ADBDF6620667C93007F4230 /* APIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIClient.swift; sourceTree = "<group>"; };
 		9ADBDF6820667CC5007F4230 /* RecruitmentItemRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecruitmentItemRequest.swift; sourceTree = "<group>"; };
 		9ADBDF6A20667CDC007F4230 /* RecruitmentItemService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecruitmentItemService.swift; sourceTree = "<group>"; };
 		9ADBDF6C20667CF5007F4230 /* RecruitmentItemMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecruitmentItemMapper.swift; sourceTree = "<group>"; };
@@ -63,12 +67,13 @@
 			isa = PBXGroup;
 			children = (
 				9ADBDF6420667C71007F4230 /* RecruitmentItemModel.swift */,
-				9ADBDF6620667C93007F4230 /* NetworkClient.swift */,
+				9ADBDF6620667C93007F4230 /* APIClient.swift */,
 				9ADBDF6820667CC5007F4230 /* RecruitmentItemRequest.swift */,
 				9ADBDF6A20667CDC007F4230 /* RecruitmentItemService.swift */,
 				9ADBDF6C20667CF5007F4230 /* RecruitmentItemMapper.swift */,
 				9ADBDF7020668852007F4230 /* ImageCacheAssistant.swift */,
 				9ADBDF7220668872007F4230 /* ImageDownloader.swift */,
+				9A7FFAC82066B7F500EE063D /* HttpRequest.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -120,6 +125,7 @@
 				D93FDE411D114DEA00AB8D9B /* AppDelegate.swift */,
 				D93FDE4B1D114DEA00AB8D9B /* Assets.xcassets */,
 				D93FDE501D114DEA00AB8D9B /* Info.plist */,
+				9A7FFAC42066B07200EE063D /* ShowsAlert.swift */,
 			);
 			path = iOSRecruitmentTest;
 			sourceTree = "<group>";
@@ -201,11 +207,13 @@
 				9ADBDF7320668872007F4230 /* ImageDownloader.swift in Sources */,
 				9ADBDF6920667CC5007F4230 /* RecruitmentItemRequest.swift in Sources */,
 				9ADBDF6D20667CF5007F4230 /* RecruitmentItemMapper.swift in Sources */,
+				9A7FFAC52066B07200EE063D /* ShowsAlert.swift in Sources */,
 				9ADBDF6520667C71007F4230 /* RecruitmentItemModel.swift in Sources */,
 				D93FDE581D114E7A00AB8D9B /* ViewController.swift in Sources */,
 				D93FDE5C1D114F9300AB8D9B /* TableViewCell.swift in Sources */,
-				9ADBDF6720667C93007F4230 /* NetworkClient.swift in Sources */,
+				9ADBDF6720667C93007F4230 /* APIClient.swift in Sources */,
 				D93FDE4A1D114DEA00AB8D9B /* iOSRecruitmentTest.xcdatamodeld in Sources */,
+				9A7FFAC92066B7F500EE063D /* HttpRequest.swift in Sources */,
 				9ADBDF7120668852007F4230 /* ImageCacheAssistant.swift in Sources */,
 				9ADBDF6B20667CDC007F4230 /* RecruitmentItemService.swift in Sources */,
 				D93FDE421D114DEA00AB8D9B /* AppDelegate.swift in Sources */,

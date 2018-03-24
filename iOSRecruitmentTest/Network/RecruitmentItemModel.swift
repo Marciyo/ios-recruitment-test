@@ -8,11 +8,11 @@
 
 import UIKit
 
-struct RecruitmentItemModel: Decodable{
+struct RecruitmentItemModel: Decodable {
     let id: Int
     let name: String
     let description: String
     let icon: String
-    let timestamp: Int
+    let timestamp: Double
     let url: String
 }

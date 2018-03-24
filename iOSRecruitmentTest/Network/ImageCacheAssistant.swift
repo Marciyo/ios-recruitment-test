@@ -6,7 +6,6 @@
 //  Copyright © 2018 Snowdog. All rights reserved.
 //
 
-import Foundation
 import UIKit
 
 final class ImageCacheAssistant {
@@ -19,7 +18,7 @@ final class ImageCacheAssistant {
         return nil
     }
     
-    func setImage(_ image: UIImage, for key: String) {
+    func setImage(image: UIImage, forKey key: String) {
         self.cache.setObject(image, forKey: key as AnyObject)
     }
     

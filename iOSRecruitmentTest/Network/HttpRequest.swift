@@ -1,5 +1,5 @@
 //
-//  NetworkClient.swift
+//  HttpRequest.swift
 //  iOSRecruitmentTest
 //
 //  Created by Marcel Mierzejewski on 3/24/18.
@@ -38,22 +38,5 @@ extension HttpRequest {
         var request = URLRequest(url: url)
         request.httpMethod = method.rawValue
         return request
-    }
-}
-
-struct API {
-    private static let baseURL = URL(string: "http://localhost:8080/api/")!
-    
-    static func fetchData<T: Decodable>(request: HttpRequest, success: @escaping (T) -> (), failure: @escaping (Error) -> ()) {
-        let request = request.request(baseURL: API.baseURL)
-        let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
-            do {
-                let model: T = try JSONDecoder().decode(T.self, from: data ?? Data())
-                success(model)
-            } catch let error {
-                failure(error)
-            }
-        }
-        task.resume()
     }
 }

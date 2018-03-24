@@ -25,7 +25,7 @@ struct RecruitmentItemMapper {
         
         var entities: [RecruitmentItemEntity] = []
         
-        for recruitmentItemModel in recruitmentItemModels{
+        for recruitmentItemModel in recruitmentItemModels {
             let entity = NSEntityDescription.insertNewObject(forEntityName: RecruitmentItemMapper.entityName, into: PersistenceService.context) as! RecruitmentItemEntity
             entity.setValue(recruitmentItemModel.name, forKey: RecruitmentItemKeys.name)
             entity.setValue(recruitmentItemModel.icon, forKey: RecruitmentItemKeys.iconUrl)
