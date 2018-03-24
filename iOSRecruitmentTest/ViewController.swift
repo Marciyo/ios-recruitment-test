@@ -12,6 +12,7 @@ class ViewController: UIViewController, ShowsAlert {
 
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var tableView: UITableView!
+    private var initialContentOffset = CGPoint()
     
     fileprivate let refreshControl = UIRefreshControl()
 
@@ -53,8 +54,11 @@ class ViewController: UIViewController, ShowsAlert {
         }){
             DispatchQueue.main.async(execute: { [weak self] () -> Void in
                 self?.refreshControl.endRefreshing()
-                })
-            self.showAlert(message: "Couldn't fetch data from the server")
+                self?.showAlert(message: "Couldn't fetch data from the server")
+                if let initialOffset = self?.initialContentOffset{
+                    self?.tableView.setContentOffset(initialOffset, animated: true)
+                }
+            })
         }
     }
 }
@@ -66,6 +70,7 @@ extension ViewController: UITableViewDataSource {
     fileprivate func tableViewConfiguration() {
         self.refreshControl.addTarget(self, action: #selector(self.fetchData), for: UIControlEvents.valueChanged)
         self.tableView.refreshControl = refreshControl
+        self.initialContentOffset = self.tableView.contentOffset
         self.tableView.register(UINib(nibName: "TableViewCell", bundle: nil), forCellReuseIdentifier: ViewController.tableViewCellIdentifier)
     }
     
