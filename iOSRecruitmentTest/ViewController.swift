@@ -13,6 +13,8 @@ class ViewController: UIViewController {
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var tableView: UITableView!
     
+    fileprivate let refreshControl = UIRefreshControl()
+
     let service = RecruitmentItemService()
     private let itemMapper = RecruitmentItemMapper()
     private var recruitmentItemsEntityData: [RecruitmentItemEntity] = []
@@ -27,12 +29,13 @@ class ViewController: UIViewController {
         }
     }
     
-    fileprivate func fetchData() {
+    @objc fileprivate func fetchData() {
         PersistenceService.deleteAll()
         self.service.fetchData(successHandler: { response in
             self.recruitmentItemsEntityData = self.itemMapper.mapToEntity(with: response)
             DispatchQueue.main.async(execute: { () -> Void in
                 self.tableView.reloadData()
+                self.refreshControl.endRefreshing()
             })
         }){
             print("Error in VC with fetching data")
@@ -45,6 +48,8 @@ extension ViewController: UITableViewDataSource {
     static let tableViewCellIdentifier = "TableViewCell"
 
     fileprivate func tableViewConfiguration() {
+        self.refreshControl.addTarget(self, action: #selector(self.fetchData), for: UIControlEvents.valueChanged)
+        self.tableView.refreshControl = refreshControl
         self.tableView.register(UINib(nibName: "TableViewCell", bundle: nil), forCellReuseIdentifier: ViewController.tableViewCellIdentifier)
     }
     
